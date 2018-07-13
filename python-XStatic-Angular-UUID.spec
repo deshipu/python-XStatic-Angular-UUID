@@ -3,7 +3,7 @@
 Name:           python-%{pypi_name}
 Version:        0.0.4.0
 Release:        1%{?dist}
-Provides:       python2-XStatic-Angular-UUID = %{version}-%{release}
+Provides:       python2-%{pypi_name} = %{version}-%{release}
 Summary:        Angular-UUID (XStatic packaging standard)
 
 License:        MIT
@@ -28,26 +28,21 @@ It intentionally does not provide any extra code except some metadata
 nor has any extra requirements.
 
 %prep
-%setup -q -n %{pypi_name}-%{version}
+%autosetup -n %{pypi_name}-%{version}
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 
-# patch to use webassets dir
+# Patch to use webassets directory
 sed -i "s|^BASE_DIR = .*|BASE_DIR = '%{_jsdir}/angular_uuid'|" xstatic/pkg/angular_uuid/__init__.py
 
 %build
-# due
-# https://bitbucket.org/thomaswaldmann/xstatic/issue/2/
-# this package can not be built with python-XStatic installed.
-%{__python2} setup.py build
-
+%py2_build
 
 %install
-%{__python2} setup.py install --skip-build --root %{buildroot}
+%py2_install
 mkdir -p %{buildroot}/%{_jsdir}/angular_uuid
 mv %{buildroot}/%{python2_sitelib}/xstatic/pkg/angular_uuid/data/angular-uuid.js %{buildroot}/%{_jsdir}/angular_uuid
 rmdir %{buildroot}%{python2_sitelib}/xstatic/pkg/angular_uuid/data/
-
 
 
 %files
@@ -56,6 +51,7 @@ rmdir %{buildroot}%{python2_sitelib}/xstatic/pkg/angular_uuid/data/
 %{python2_sitelib}/XStatic_Angular_UUID-%{version}-py%{python_version}.egg-info
 %{python2_sitelib}/XStatic_Angular_UUID-%{version}-py%{python_version}-nspkg.pth
 %{_jsdir}/angular_uuid
+
 
 %changelog
 * Thu Jul 12 2018 Radomir Dopieralski <rdopiera@redhat.com) - 0.0.4.0-1

@@ -106,7 +106,6 @@ rm -rf %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_uuid/data/
 %{python2_sitelib}/xstatic/pkg/angular_uuid
 %{python2_sitelib}/XStatic_Angular_UUID-%{version}-py%{python_version}.egg-info
 %{python2_sitelib}/XStatic_Angular_UUID-%{version}-py%{python_version}-nspkg.pth
-%{_jsdir}/angular_uuid
 
 %files -n xstatic-angular-uuid-common
 %doc README.txt
@@ -118,7 +117,6 @@ rm -rf %{buildroot}%{python3_sitelib}/xstatic/pkg/angular_uuid/data/
 %{python3_sitelib}/xstatic/pkg/angular_uuid
 %{python3_sitelib}/XStatic_Angular_UUID-%{version}-py%{python3_version}.egg-info
 %{python3_sitelib}/XStatic_Angular_UUID-%{version}-py%{python3_version}-nspkg.pth
-%{_jsdir}/angular_uuid
 %endif
 
 

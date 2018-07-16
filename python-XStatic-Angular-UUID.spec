@@ -7,7 +7,6 @@
 Name:           python-%{pypi_name}
 Version:        0.0.4.0
 Release:        1%{?dist}
-Provides:       python2-%{pypi_name} = %{version}-%{release}
 Summary:        Angular-UUID (XStatic packaging standard)
 
 License:        MIT
